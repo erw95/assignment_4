@@ -1,0 +1,131 @@
+---
+title: "assignment_4.md"
+author: "Emma"
+date: "3/6/2021"
+output: html_document
+---
+
+---
+
+
+
+
+### **Load packages**
+To start, load all the required packages with the following code. Install them if they are not installed yet.
+
+```{r, message=FALSE,warning=FALSE}
+library(tidyverse)
+library(knitr)
+```
+
+### **Exercise 1. Corruption and human development**
+This exercise explores a dataset containing the human development index (`HDI`) and corruption perception index (`CPI`) of 173 countries across 6 different regions around the world: Americas, Asia Pacific, Eastern Europe and Central Asia (`East EU Cemt`), Western Europe (`EU W. Europe`), Middle East and North Africa and Noth Africa (`MENA`), and Sub-Saharan Africa (`SSA`). (Note: the larger `CPI` is, the less corrupted the country is perceived to be.)
+
+
+First, we load the data using the following code.
+```{r}
+economist_data <- read_csv('https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/EconomistData.csv')
+```
+**1.1 Show the first few rows of `economist_data`.**
+economist_data <- head(X1, country, HDI.Rank, HDI, CPI, Region)
+```
+**1.2 Expore the relationship between human development index (`HDI`) and corruption perception index (`CPI`) with a scatter plot as the following.**
+```{r}
+ggplot(data = economist_data) + 
+  geom_point(mapping = aes(x = CPI, y = HDI)) 
+```
+**1.3 Make the color of all points in the previous plot red.**
+```{r}
+ggplot(data = economist_data) + 
+  geom_point(mapping = aes(x = CPI, y = HDI, color ="red")) 
+```
+**1.4 Color the points in the previous plot according to the `Region` variable, and set the size of points to 2.**
+```{r}
+ggplot(data = economist_data) + 
+  geom_point(mapping = aes(x = CPI, y = HDI, color = Region, size=2))
+```
+**1.5 Set the size of the points proportional to `HDI.Rank`**
+```{r}
+ggplot(data = economist_data) + 
+  geom_point(mapping = aes(x = CPI, y = HDI, color = Region, size = HDI.Rank))
+```
+**1.6 Fit a smoothing line to all the data points in the scatter plot from Excercise 1.4**
+```{r}
+ggplot(data = economist_data) + 
+  geom_point(mapping = aes(x = CPI, y = HDI, color = Region, size = HDI.Rank), shape = 16) +
+  geom_smooth(mapping = aes(x = CPI, y = HDI))
+```
+**1.7 Fit a separate straight line for each region instead, and turn off the confidence interval.**
+```{r}
+ggplot(data = economist_data) + 
+  geom_point(mapping = aes(x = CPI, y = HDI, color = Region, size = HDI.Rank), shape = 16) +
+  geom_smooth(mapping = aes(x = CPI, y = HDI))
+```
+**1.8 Building on top of the previous plot, show each `Region` in a different facet.**
+```{r}
+ggplot(data = economist_data) +
+  geom_density(mapping = aes(x = Region))
+  facet_wrap(~ Region, nrow=1)
+```
+**1.9 Show the distribution of `HDI` in each region using density plot. Set the transparency to 0.5**
+```{r}
+ggplot(data = economist_data) +
+  geom_density(mapping = aes(fill = drv, x = HDI), alpha = 0.5)
+```
+**1.10 Show the distribution of `HDI` in each region using histogram and facetting.**
+```{r}
+ggplot(data = economist_data) +
+ geom_histogram(mapping = aes(fill = drv, x = HDI), alpha = 0.5)
+ facet_wrap(~ HDI, nrow=1)
+```
+**1.11 Show the distribution of `HDI` in each region using a box plot. Set the transparency of these boxes to 0.5. Also show data points for each country in the same plot. (Hint: `geom_jitter()` or `position_jitter()` might be useful.)**
+```{r}
+ggplot(data = economist_data) +
+ geom_boxplot(mapping = aes(fill = drv, x = HDI, y = ), alpha = 0.5)
+```
+**1.12 Show the count of countries in each region using a bar plot.**
+```{r}
+ggplot(data = economist_data) +
+ geom_bar(mapping = aes(x = countries))
+```
+**1.13 You have now created a variety of different plots of the same dataset. Which of your plots do you think are the most informative? Describe briefly the major trends that you see in the data.**
+Answer: Ithink that the graph in 1.8 shows the most, because it provides a nice summary of human development and process capacity in different regions.
+
+### **Exercise 2. Unemployment in the US 1967-2015**
+This excercise uses the dataset `economics` from the `ggplot2 package`. It was produced from US economic time series data available from http://research.stlouisfed.org/fred2. It descibes the number of unemployed persons (`unemploy`), among other variables, in the US from 1967 to 2015.
+```{r}
+kable(head(Theoph))
+```
+For the following exercies, transform the data as instructed. Try to use tidyverse functions even if you are more comfortable with base-R solutions. Show the first 6 lines of the transformed data in a table through RMarkdown **using the kable() function**, as shown above.
+
+**2.1 Select columns that contain a lower case “t” in the Theoph dataset. Do not manually list all the columns to include.**
+```{r}
+Theoph <- head(columns == t)
+```
+**2.2 Rename the 'Wt' column to 'Weight' and conc column to 'Concentration' in the 'Theoph' dataset.**
+```{r}
+
+```
+**2.3 Extract the 'Dose' greater than 4.5 and 'Time' greater than the mean 'Time'.**
+```{r}
+
+```
+**2.4 Sort the 'Theoph' dataset by 'Wt' from smallest to largest and secondarily by 'Time' from largest to smallest.**
+```{r}
+
+```
+**2.5 Create a new column called 'Quantity' that equals to 'Wt' x 'Dose' in the 'Theoph' dataset. This will tell you the absolute quantity of drug administered to the subject (in mg). Replace the 'Dose' variable with 'Quantity'.**
+```{r}
+
+```
+**2.6 Find the mean conc and sum of the 'Dose" received by each test subject.**
+Show data for the 6 subjects with the smallest sum of 'Dose" as below. **Do not define new intermediate objects for this exercise; use pipes to chain together functions. **
+```{r}
+
+```
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
