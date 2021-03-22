@@ -22,6 +22,7 @@ library(knitr)
 This exercise explores a dataset containing the human development index (`HDI`) and corruption perception index (`CPI`) of 173 countries across 6 different regions around the world: Americas, Asia Pacific, Eastern Europe and Central Asia (`East EU Cemt`), Western Europe (`EU W. Europe`), Middle East and North Africa and Noth Africa (`MENA`), and Sub-Saharan Africa (`SSA`). (Note: the larger `CPI` is, the less corrupted the country is perceived to be.)
 
 
+
 First, we load the data using the following code.
 ```{r}
 economist_data <- read_csv('https://raw.githubusercontent.com/nt246/NTRES-6100-data-science/master/datasets/EconomistData.csv')
